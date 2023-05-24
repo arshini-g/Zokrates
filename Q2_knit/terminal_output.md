@@ -1,0 +1,767 @@
+Arshini@Arshini-Govindu-MacBook-Pro ~ % zokrates compile -i get_hash.zok -o get_hash && zokrates inspect -i get_hash
+
+Compiling get_hash.zok
+
+Compiled code written to 'get_hash'
+Number of constraints: 27470
+curve:            bn128
+constraint_count: 27470
+Arshini@Arshini-Govindu-MacBook-Pro ~ % zokrates compute-witness --verbose -i get_hash -a 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+
+Computing witness...
+
+Witness: 
+["3592665057","2164530888","1223339564","3041196771","2006723467","2963045520","3851824201","3453903005"]
+
+Witness file written to 'witness'
+Arshini@Arshini-Govindu-MacBook-Pro ~ % zokrates compile -i reveal_bit.zok -o reveal_bit
+zokrates compute-witness --verbose -i reveal_bit -a 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 510
+
+Compiling reveal_bit.zok
+
+Compiled code written to 'reveal_bit'
+Number of constraints: 29041
+Computing witness...
+
+Witness: 
+["3592665057","2164530888","1223339564","3041196771","2006723467","2963045520","3851824201","3453903005","1"]
+
+Witness file written to 'witness'
+Arshini@Arshini-Govindu-MacBook-Pro ~ % cd bob
+Arshini@Arshini-Govindu-MacBook-Pro bob % zokrates compile -i reveal_bit.zok -o reveal_bit
+zokrates setup -i reveal_bit
+
+Compiling reveal_bit.zok
+
+Could not open reveal_bit.zok: No such file or directory (os error 2)
+Couldn't open reveal_bit: No such file or directory (os error 2)
+Arshini@Arshini-Govindu-MacBook-Pro bob % zokrates compile -i reveal_bit.zok -o reveal_bit
+zokrates setup -i reveal_bit
+
+Compiling reveal_bit.zok
+
+Compiled code written to 'reveal_bit'
+Number of constraints: 29041
+Performing setup...
+Verification key written to 'verification.key'
+Proving key written to 'proving.key'
+Setup completed
+Arshini@Arshini-Govindu-MacBook-Pro bob % cd ../                                Arshini@Arshini-Govindu-MacBook-Pro ~ % cd alice
+Arshini@Arshini-Govindu-MacBook-Pro alice % zokrates compile -i reveal_bit.zok -o reveal_bit
+
+Compiling reveal_bit.zok
+
+Could not open reveal_bit.zok: No such file or directory (os error 2)
+Arshini@Arshini-Govindu-MacBook-Pro alice % zokrates compile -i reveal_bit.zok -o reveal_bit
+
+Compiling reveal_bit.zok
+
+Compiled code written to 'reveal_bit'
+Number of constraints: 29041
+Arshini@Arshini-Govindu-MacBook-Pro alice % zokrates compute-witness --verbose -i reveal_bit -a 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 510
+zokrates generate-proof -i reveal_bit
+
+Computing witness...
+
+Witness: 
+["3592665057","2164530888","1223339564","3041196771","2006723467","2963045520","3851824201","3453903005","1"]
+
+Witness file written to 'witness'
+Generating proof...
+Proof written to 'proof.json'
+Arshini@Arshini-Govindu-MacBook-Pro alice % cd ../
+Arshini@Arshini-Govindu-MacBook-Pro ~ % cd bob
+Arshini@Arshini-Govindu-MacBook-Pro bob % zokrates verify
+Performing verification...
+PASSED
+Arshini@Arshini-Govindu-MacBook-Pro bob % zokrates export-verifier
+Exporting verifier...
+Verifier exported to 'verifier.sol'
+Arshini@Arshini-Govindu-MacBook-Pro bob % cd ../
+Arshini@Arshini-Govindu-MacBook-Pro ~ % truffle init
+zsh: command not found: truffle
+Arshini@Arshini-Govindu-MacBook-Pro ~ % truffle
+zsh: command not found: truffle
+Arshini@Arshini-Govindu-MacBook-Pro ~ % npm
+npm <command>
+
+Usage:
+
+npm install        install all the dependencies in your project
+npm install <foo>  add the <foo> dependency to your project
+npm test           run this project's tests
+npm run <foo>      run the script named <foo>
+npm <command> -h   quick help on <command>
+npm -l             display usage info for all commands
+npm help <term>    search for help on <term>
+npm help npm       more involved overview
+
+All commands:
+
+    access, adduser, audit, bugs, cache, ci, completion,
+    config, dedupe, deprecate, diff, dist-tag, docs, doctor,
+    edit, exec, explain, explore, find-dupes, fund, get, help,
+    help-search, hook, init, install, install-ci-test,
+    install-test, link, ll, login, logout, ls, org, outdated,
+    owner, pack, ping, pkg, prefix, profile, prune, publish,
+    query, rebuild, repo, restart, root, run-script, search,
+    set, shrinkwrap, star, stars, start, stop, team, test,
+    token, uninstall, unpublish, unstar, update, version, view,
+    whoami
+
+Specify configs in the ini-formatted file:
+    /Users/Arshini/.npmrc
+or on the command line via: npm <command> --key=value
+
+More configuration info: npm help config
+Configuration fields: npm help 7 config
+
+npm@9.6.7 /Users/Arshini/.nvm/versions/node/v20.2.0/lib/node_modules/npm
+Arshini@Arshini-Govindu-MacBook-Pro ~ % npm install -g truffle
+npm WARN deprecated testrpc@0.0.1: testrpc has been renamed to ganache-cli, please use this package from now on.
+npm WARN deprecated mkdirp-promise@5.0.1: This package is broken and no longer maintained. 'mkdirp' itself supports promises now, please switch to that.
+npm WARN deprecated har-validator@5.1.5: this library is no longer supported
+npm WARN deprecated apollo-datasource@3.3.2: The `apollo-datasource` package is part of Apollo Server v2 and v3, which are now deprecated (end-of-life October 22nd 2023). See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
+npm WARN deprecated apollo-server-plugin-base@3.7.2: The `apollo-server-plugin-base` package is part of Apollo Server v2 and v3, which are now deprecated (end-of-life October 22nd 2023). This package's functionality is now found in the `@apollo/server` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
+npm WARN deprecated apollo-server-types@3.8.0: The `apollo-server-types` package is part of Apollo Server v2 and v3, which are now deprecated (end-of-life October 22nd 2023). This package's functionality is now found in the `@apollo/server` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
+npm WARN deprecated apollo-server-errors@3.3.1: The `apollo-server-errors` package is part of Apollo Server v2 and v3, which are now deprecated (end-of-life October 22nd 2023). This package's functionality is now found in the `@apollo/server` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
+npm WARN deprecated apollo-server@3.12.0: The `apollo-server` package is part of Apollo Server v2 and v3, which are now deprecated (end-of-life October 22nd 2023). This package's functionality is now found in the `@apollo/server` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
+npm WARN deprecated apollo-server-express@3.12.0: The `apollo-server-express` package is part of Apollo Server v2 and v3, which are now deprecated (end-of-life October 22nd 2023). This package's functionality is now found in the `@apollo/server` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
+npm WARN deprecated uuid@2.0.1: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+npm WARN deprecated multicodec@1.0.4: This module has been superseded by the multiformats module
+npm WARN deprecated uuid@3.4.0: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+npm WARN deprecated apollo-server-env@4.2.1: The `apollo-server-env` package is part of Apollo Server v2 and v3, which are now deprecated (end-of-life October 22nd 2023). This package's functionality is now found in the `@apollo/utils.fetcher` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
+npm WARN deprecated request@2.88.2: request has been deprecated, see https://github.com/request/request/issues/3142
+npm WARN deprecated multibase@0.6.1: This module has been superseded by the multiformats module
+npm WARN deprecated multibase@0.7.0: This module has been superseded by the multiformats module
+npm WARN deprecated apollo-reporting-protobuf@3.4.0: The `apollo-reporting-protobuf` package is part of Apollo Server v2 and v3, which are now deprecated (end-of-life October 22nd 2023). This package's functionality is now found in the `@apollo/usage-reporting-protobuf` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
+npm WARN deprecated multicodec@0.5.7: This module has been superseded by the multiformats module
+npm WARN deprecated cids@0.7.5: This module has been superseded by the multiformats module
+npm WARN deprecated @ensdomains/ens@0.4.5: Please use @ensdomains/ens-contracts
+npm WARN deprecated apollo-server-core@3.12.0: The `apollo-server-core` package is part of Apollo Server v2 and v3, which are now deprecated (end-of-life October 22nd 2023). This package's functionality is now found in the `@apollo/server` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
+npm WARN deprecated @ensdomains/resolver@0.2.4: Please use @ensdomains/ens-contracts
+
+added 825 packages in 1m
+
+107 packages are looking for funding
+  run `npm fund` for details
+Arshini@Arshini-Govindu-MacBook-Pro ~ % truffle
+This version of µWS is not compatible with your Node.js build:
+
+Error: Cannot find module '../binaries/uws_darwin_arm64_115.node'
+Require stack:
+- /Users/Arshini/.nvm/versions/node/v20.2.0/lib/node_modules/truffle/node_modules/ganache/node_modules/@trufflesuite/uws-js-unofficial/src/uws.js
+- /Users/Arshini/.nvm/versions/node/v20.2.0/lib/node_modules/truffle/node_modules/ganache/dist/node/core.js
+- /Users/Arshini/.nvm/versions/node/v20.2.0/lib/node_modules/truffle/build/cli.bundled.js
+Falling back to a NodeJS implementation; performance may be degraded.
+
+
+Truffle v5.9.1 - a development framework for Ethereum
+
+Usage: truffle <command> [options]
+
+Commands:
+  truffle build      Execute build pipeline (if configuration present)
+  truffle call       Call read-only contract function with arguments
+  truffle compile    Compile contract source files
+  truffle config     Set user-level configuration options
+  truffle console    Run a console with contract abstractions and commands
+                     available
+  truffle create     Helper to create new contracts, migrations and tests
+  truffle dashboard  Start Truffle Dashboard to sign development transactions
+                     using browser wallet
+  truffle db         Database interface commands
+  truffle debug      Interactively debug any transaction on the blockchain
+  truffle deploy     (alias for migrate)
+  truffle develop    Open a console with a local development blockchain
+  truffle exec       Execute a JS module within this Truffle environment
+  truffle help       List all commands or provide information about a specific
+                     command
+  truffle init       Initialize new and empty Ethereum project
+  truffle migrate    Run migrations to deploy contracts
+  truffle networks   Show addresses for deployed contracts on each network
+  truffle obtain     Fetch and cache a specified compiler
+  truffle opcode     Print the compiled opcodes for a given contract
+  truffle preserve   Save data to decentralized storage platforms like IPFS and
+                     Filecoin
+  truffle run        Run a third-party command
+  truffle test       Run JavaScript and Solidity tests
+  truffle unbox      Download a Truffle Box, a pre-built Truffle project
+  truffle version    Show version number and exit
+  truffle watch      Watch filesystem for changes and rebuild the project
+                     automatically
+
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+
+See more at https://trufflesuite.com/docs/
+For Ethereum JSON-RPC documentation see https://ganache.dev
+Arshini@Arshini-Govindu-MacBook-Pro ~ % truffle --version
+Truffle v5.9.1 (core: 5.9.1)
+Ganache v7.8.0
+Solidity v0.5.16 (solc-js)
+Node v20.2.0
+Web3.js v1.10.0
+Arshini@Arshini-Govindu-MacBook-Pro ~ % truffle init
+
+Starting init...
+================
+
+> Copying project files to /Users/Arshini
+
+Init successful, sweet!
+
+Try our scaffold commands to get started:
+  $ truffle create contract YourContractName # scaffold a contract
+  $ truffle create test YourTestName         # scaffold a test
+
+http://trufflesuite.com/docs
+
+Arshini@Arshini-Govindu-MacBook-Pro ~ % grep solidity contracts/verifier.sol
+pragma solidity ^0.8.0;
+Arshini@Arshini-Govindu-MacBook-Pro ~ % truffle compile
+
+Compiling your contracts...
+===========================
+There was an error attempting to save the compiler to disk. The current user likely does not have sufficient permissions to write to disk in Truffle's compiler cache directory. See the errorprinted below for more information about this directory.
+Error: EACCES: permission denied, open '/Users/Arshini/Library/Preferences/truffle-nodejs/compilers/node_modules/solc-emscripten-wasm32-v0.8.0+commit.c7dfd78e.js'
+There was an error attempting to save the compiler to disk. The current user likely does not have sufficient permissions to write to disk in Truffle's compiler cache directory. See the errorprinted below for more information about this directory.
+Error: EACCES: permission denied, open '/Users/Arshini/Library/Preferences/truffle-nodejs/compilers/node_modules/solc-emscripten-wasm32-v0.8.0+commit.c7dfd78e.js'
+> Compiling ./contracts/verifier.sollc-bin. Attempt #1
+> Compilation warnings encountered:
+
+    Warning: SPDX license identifier not provided in source file. Before publishing, consider adding a comment containing "SPDX-License-Identifier: <SPDX-License>" to each source file. Use "SPDX-License-Identifier: UNLICENSED" for non-open-source code. Please see https://spdx.org for more information.
+--> project:/contracts/verifier.sol
+
+
+> Artifacts written to /Users/Arshini/build/contracts
+> Compiled successfully using:
+   - solc: 0.8.0+commit.c7dfd78e.Emscripten.clang
+Arshini@Arshini-Govindu-MacBook-Pro ~ % truffle console
+This version of µWS is not compatible with your Node.js build:
+
+Error: Cannot find module '../binaries/uws_darwin_arm64_115.node'
+Require stack:
+- /Users/Arshini/.nvm/versions/node/v20.2.0/lib/node_modules/truffle/node_modules/ganache/node_modules/@trufflesuite/uws-js-unofficial/src/uws.js
+- /Users/Arshini/.nvm/versions/node/v20.2.0/lib/node_modules/truffle/node_modules/ganache/dist/node/core.js
+- /Users/Arshini/.nvm/versions/node/v20.2.0/lib/node_modules/truffle/build/console.bundled.js
+- /Users/Arshini/.nvm/versions/node/v20.2.0/lib/node_modules/truffle/node_modules/original-require/index.js
+- /Users/Arshini/.nvm/versions/node/v20.2.0/lib/node_modules/truffle/build/cli.bundled.js
+Falling back to a NodeJS implementation; performance may be degraded.
+
+
+> Something went wrong while attempting to connect to the network at http://127.0.0.1:7545. Check your network configuration.
+CONNECTION ERROR: Couldn't connect to node http://127.0.0.1:7545.
+Truffle v5.9.1 (core: 5.9.1)
+Node v20.2.0
+Arshini@Arshini-Govindu-MacBook-Pro ~ % truffle console
+This version of µWS is not compatible with your Node.js build:
+
+Error: Cannot find module '../binaries/uws_darwin_arm64_115.node'
+Require stack:
+- /Users/Arshini/.nvm/versions/node/v20.2.0/lib/node_modules/truffle/node_modules/ganache/node_modules/@trufflesuite/uws-js-unofficial/src/uws.js
+- /Users/Arshini/.nvm/versions/node/v20.2.0/lib/node_modules/truffle/node_modules/ganache/dist/node/core.js
+- /Users/Arshini/.nvm/versions/node/v20.2.0/lib/node_modules/truffle/build/console.bundled.js
+- /Users/Arshini/.nvm/versions/node/v20.2.0/lib/node_modules/truffle/node_modules/original-require/index.js
+- /Users/Arshini/.nvm/versions/node/v20.2.0/lib/node_modules/truffle/build/cli.bundled.js
+Falling back to a NodeJS implementation; performance may be degraded.
+
+
+truffle(development)> contract = await Verifier.new()
+TruffleContract {
+  constructor: [Function: TruffleContract] {
+    _constructorMethods: {
+      configureNetwork: [Function: configureNetwork],
+      setProvider: [Function: setProvider],
+      new: [Function: new],
+      at: [AsyncFunction: at],
+      deployed: [AsyncFunction: deployed],
+      defaults: [Function: defaults],
+      hasNetwork: [Function: hasNetwork],
+      isDeployed: [Function: isDeployed],
+      detectNetwork: [AsyncFunction: detectNetwork],
+      setNetwork: [Function: setNetwork],
+      setNetworkType: [Function: setNetworkType],
+      setWallet: [Function: setWallet],
+      resetAddress: [Function: resetAddress],
+      link: [Function: link],
+      clone: [Function: clone],
+      addProp: [Function: addProp],
+      toJSON: [Function: toJSON],
+      decodeLogs: [Function: decodeLogs]
+    },
+    _properties: {
+      contract_name: [Object],
+      contractName: [Object],
+      gasMultiplier: [Object],
+      timeoutBlocks: [Object],
+      autoGas: [Object],
+      numberFormat: [Object],
+      abi: [Object],
+      metadata: [Function: metadata],
+      network: [Function: network],
+      networks: [Function: networks],
+      address: [Object],
+      transactionHash: [Object],
+      links: [Function: links],
+      events: [Function: events],
+      binary: [Function: binary],
+      deployedBinary: [Function: deployedBinary],
+      unlinked_binary: [Object],
+      bytecode: [Object],
+      deployedBytecode: [Object],
+      sourceMap: [Object],
+      deployedSourceMap: [Object],
+      source: [Object],
+      sourcePath: [Object],
+      legacyAST: [Object],
+      ast: [Object],
+      compiler: [Object],
+      schema_version: [Function: schema_version],
+      schemaVersion: [Function: schemaVersion],
+      updated_at: [Function: updated_at],
+      updatedAt: [Function: updatedAt],
+      userdoc: [Function: userdoc],
+      devdoc: [Function: devdoc],
+      networkType: [Object],
+      immutableReferences: [Object],
+      generatedSources: [Object],
+      deployedGeneratedSources: [Object],
+      db: [Object]
+    },
+    _property_values: {},
+    _json: {
+      contractName: 'Verifier',
+      abi: [Array],
+      metadata: '{"compiler":{"version":"0.8.0+commit.c7dfd78e"},"language":"Solidity","output":{"abi":[{"inputs":[{"components":[{"components":[{"internalType":"uint256","name":"X","type":"uint256"},{"internalType":"uint256","name":"Y","type":"uint256"}],"internalType":"struct Pairing.G1Point","name":"a","type":"tuple"},{"components":[{"internalType":"uint256[2]","name":"X","type":"uint256[2]"},{"internalType":"uint256[2]","name":"Y","type":"uint256[2]"}],"internalType":"struct Pairing.G2Point","name":"b","type":"tuple"},{"components":[{"internalType":"uint256","name":"X","type":"uint256"},{"internalType":"uint256","name":"Y","type":"uint256"}],"internalType":"struct Pairing.G1Point","name":"c","type":"tuple"}],"internalType":"struct Verifier.Proof","name":"proof","type":"tuple"},{"internalType":"uint256[10]","name":"input","type":"uint256[10]"}],"name":"verifyTx","outputs":[{"internalType":"bool","name":"r","type":"bool"}],"stateMutability":"view","type":"function"}],"devdoc":{"kind":"dev","methods":{},"version":1},"userdoc":{"kind":"user","methods":{},"version":1}},"settings":{"compilationTarget":{"project:/contracts/verifier.sol":"Verifier"},"evmVersion":"istanbul","libraries":{},"metadata":{"bytecodeHash":"ipfs"},"optimizer":{"enabled":false,"runs":200},"remappings":[]},"sources":{"project:/contracts/verifier.sol":{"keccak256":"0x179d8df5df6ea04340224b304797d6c4960b65697a30afd54bb3cc9cb5d9e2a3","urls":["bzz-raw://b57873134f1bda348e0212f920f02dbb6554b101810f8adc0c858ba55ddd7d7c","dweb:/ipfs/QmdQ35s4A4jh3aLssEVJwK5fxzPjDVwDSRYKVcLqEn5iv3"]}},"version":1}',
+      bytecode: '0x608060405234801561001057600080fd5b506120a8806100206000396000f3fe608060405234801561001057600080fd5b506004361061002b5760003560e01c806311bfe45a14610030575b600080fd5b61004a60048036038101906100459190611d75565b610060565b6040516100579190611dc2565b60405180910390f35b600080600a67ffffffffffffffff8111156100a4577f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fd5b6040519080825280602002602001820160405280156100d25781602001602082028036833780820191505090505b50905060005b600a811015610177578381600a811061011a577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b6020020151828281518110610158577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002602001018181525050808061016f90611f54565b9150506100d8565b50600061018482866101a0565b141561019457600191505061019a565b60009150505b92915050565b6000807f30644e72e131a029b85045b68181585d2833e84879b9709143e1f593f0000001905060006101d06103cf565b9050806080015151600186516101e69190611e5a565b146101f057600080fd5b60006040518060400160405280600081526020016000815250905060005b865181101561031b5783878281518110610251577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b60200260200101511061026357600080fd5b61030682610301856080015160018561027c9190611e5a565b815181106102b3577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b60200260200101518a85815181106102f4577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b6020026020010151610dd1565b610eea565b9150808061031390611f54565b91505061020e565b5061036b81836080015160008151811061035e577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b6020026020010151610eea565b90506103b1856000015186602001516103838461104f565b85604001516103958a6040015161104f565b87606001516103a7896000015161104f565b89602001516110f4565b6103c157600193505050506103c9565b600093505050505b92915050565b6103d7611a44565b60405180604001604052807f1c26c77fd1516b0b64372424a4f00dc879477dc6659ec87ee1710d59a38dd39d81526020017f1b4f7f51ddaac79ed0efdc0bcf7b78f32fb47f8acbe3f0205f8f985d4f7f48468152508160000181905250604051806040016040528060405180604001604052807f257b2d2ea8fde67eec9e743b15b02aa2dd3d69ae7ff593db2cbaae75cccc057981526020017f0779b3e2957d05002c09f19466504fdc98d72c9ceef51181d56928cc96f45f09815250815260200160405180604001604052807e7e3e1a4d0648758b7dcdce31ba26f901bd7165591ba2cc8d99c341449a144981526020017f29a8a217dc768975374adbf6c4abd299a2fb61ea9b9ac5e434b762088d0045a68152508152508160200181905250604051806040016040528060405180604001604052807f25a33883c3fc5b5010f7d0754d584b6af6ad8c72ec2b2ffd6106ba7e1168ba8781526020017f13ace61c7c234e9554a31756f55595a858e476bc4d6f3259542d88ebba8ce0e9815250815260200160405180604001604052807f2a4ffe94aa0471698f6461591e84090fe259aba7441c314120f29fa04be9192e81526020017f102ee66b04a5b33b8da5abfb40c3ae8e7e8b97d2107c6e26c267318768bb5cf98152508152508160400181905250604051806040016040528060405180604001604052807f2f75835b8e07eb2842d4e8aaebd76dc5b13d7b398922b482cd34ed75b8ebb60481526020017f15340e83a71ad8ae71922daa31ec57a1c1a9f1a8b87052d9b21071ebe322f690815250815260200160405180604001604052807f28994b46c36938286be00c2d4a037b450807ed33bdfdea3026671e9a29dbc0da81526020017f1fd84493e66317f1990a47f6c160fa3608a4429ae91109c12eaa6998b9cc0e2f8152508152508160600181905250600b67ffffffffffffffff8111156106c3577f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fd5b6040519080825280602002602001820160405280156106fc57816020015b6106e9611a8b565b8152602001906001900390816106e15790505b50816080018190525060405180604001604052807f275b4cd501bad603e15a309a89eefec0f7a67fb634d73fdb210ef307f08d13f781526020017f0c9b189365a2307b2e3f0b6ff6212be6e745cfcf72492ea50c6f601550a49b588152508160800151600081518110610798577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002602001018190525060405180604001604052807f0421ef26cc818810e3c3ad3b891380dff84ef59db34bf3adc7bf7164258db19e81526020017f158f1d5722065e2c70c262ea883f75c08ec25104cba26abba15614fb222b14898152508160800151600181518110610836577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002602001018190525060405180604001604052807f22d2bfc16ea56e82a35e56a024c4eb642bfc3cea18d661d65e171ee0dc7ac20d81526020017e1d5ab194466563bdcecb756f86e901d9171b3b5eac1113c8e06fa533c1030381525081608001516002815181106108d3577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002602001018190525060405180604001604052807f156a36e1bc3a6519d3b9d1c38f54470492f7868f30e97f0b2a56739f47fb377281526020017f200145fabc873ca5cde0d516572e5d847848528b2d29a215b941e4ed23ef81988152508160800151600381518110610971577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002602001018190525060405180604001604052807f2fe1bd9027c5998828dfa35255c0109ce37df1611a8321bd6ec54414f925808481526020017f0e9468bd49a345f1a56c4c95ec43b0760112c26614e04b542a430948b267b6f68152508160800151600481518110610a0f577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002602001018190525060405180604001604052807f22d402185d33453e212ed0dc7bbeb8b12e6bd2fb59c11513c38f72e5c82243e381526020017f1f5c3f23887cdd5b07d9d301185e02cabebc3115abac40b042882f176b80fbbb8152508160800151600581518110610aad577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002602001018190525060405180604001604052807f12b331c7333b0d3bd5f9e355c3e65946a42c21cfca3dc630d45ad45ab731356b81526020017f089aed741586b9665691eadda57ebe9b96c3e411f6c54cc96429145c5f37cd2b8152508160800151600681518110610b4b577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002602001018190525060405180604001604052807f206b4ddcb62a78b8625084002868b87072d067e4cac8444442ec7d4635dd666981526020017f1a5c4733a5b4f5f2969328dda711181031531a6e9804ead44f69749641be1b948152508160800151600781518110610be9577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002602001018190525060405180604001604052807f2ea9675e2f3161c720ced4b9bed669bda997808a14947455df5fea9ea4cbba4381526020017f1c04cc977c02897f731cf71e63e92a7b0e82fd4e39a67cca66e3120607530f5a8152508160800151600881518110610c87577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002602001018190525060405180604001604052807f0a05d7db49313261bc9c961d97ad8ab35e568e3fae8029f42669d8b0ccdac2d081526020017f16a131ee70b6784583b0c8d7e8eed5cb49d7c4afcd5c5ee02f551cad2ebe189d8152508160800151600981518110610d25577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002602001018190525060405180604001604052807f138b6c6ae1a1e0f7d8b8d19830fb72c749921da700201fefdfa398f55af47d9381526020017f14e0115ada5d7c3fb6318567a2cca8516e72067766929f0be53fbd38813e17648152508160800151600a81518110610dc3577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002602001018190525090565b610dd9611a8b565b610de1611aa5565b836000015181600060038110610e20577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002018181525050836020015181600160038110610e68577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b6020020181815250508281600260038110610eac577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002018181525050600060608360808460076107d05a03fa90508060008114610ed557610ed7565bfe5b5080610ee257600080fd5b505092915050565b610ef2611a8b565b610efa611ac7565b836000015181600060048110610f39577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002018181525050836020015181600160048110610f81577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002018181525050826000015181600260048110610fc9577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002018181525050826020015181600360048110611011577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002018181525050600060608360c08460066107d05a03fa9050806000811461103a5761103c565bfe5b508061104757600080fd5b505092915050565b611057611a8b565b60007f30644e72e131a029b85045b68181585d97816a916871ca8d3c208c16d87cfd47905060008360000151148015611094575060008360200151145b156110b85760405180604001604052806000815260200160008152509150506110ef565b6040518060400160405280846000015181526020018285602001516110dd9190611f9d565b836110e89190611f0a565b8152509150505b919050565b600080600467ffffffffffffffff811115611138577f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fd5b60405190808252806020026020018201604052801561117157816020015b61115e611a8b565b8152602001906001900390816111565790505b5090506000600467ffffffffffffffff8111156111b7577f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fd5b6040519080825280602002602001820160405280156111f057816020015b6111dd611ae9565b8152602001906001900390816111d55790505b5090508a8260008151811061122e577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b60200260200101819052508882600181518110611274577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002602001018190525086826002815181106112ba577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b60200260200101819052508482600381518110611300577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b60200260200101819052508981600081518110611346577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b6020026020010181905250878160018151811061138c577f4e487b7100000000'... 6786 more characters,
+      deployedBytecode: '0x608060405234801561001057600080fd5b506004361061002b5760003560e01c806311bfe45a14610030575b600080fd5b61004a60048036038101906100459190611d75565b610060565b6040516100579190611dc2565b60405180910390f35b600080600a67ffffffffffffffff8111156100a4577f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fd5b6040519080825280602002602001820160405280156100d25781602001602082028036833780820191505090505b50905060005b600a811015610177578381600a811061011a577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b6020020151828281518110610158577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002602001018181525050808061016f90611f54565b9150506100d8565b50600061018482866101a0565b141561019457600191505061019a565b60009150505b92915050565b6000807f30644e72e131a029b85045b68181585d2833e84879b9709143e1f593f0000001905060006101d06103cf565b9050806080015151600186516101e69190611e5a565b146101f057600080fd5b60006040518060400160405280600081526020016000815250905060005b865181101561031b5783878281518110610251577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b60200260200101511061026357600080fd5b61030682610301856080015160018561027c9190611e5a565b815181106102b3577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b60200260200101518a85815181106102f4577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b6020026020010151610dd1565b610eea565b9150808061031390611f54565b91505061020e565b5061036b81836080015160008151811061035e577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b6020026020010151610eea565b90506103b1856000015186602001516103838461104f565b85604001516103958a6040015161104f565b87606001516103a7896000015161104f565b89602001516110f4565b6103c157600193505050506103c9565b600093505050505b92915050565b6103d7611a44565b60405180604001604052807f1c26c77fd1516b0b64372424a4f00dc879477dc6659ec87ee1710d59a38dd39d81526020017f1b4f7f51ddaac79ed0efdc0bcf7b78f32fb47f8acbe3f0205f8f985d4f7f48468152508160000181905250604051806040016040528060405180604001604052807f257b2d2ea8fde67eec9e743b15b02aa2dd3d69ae7ff593db2cbaae75cccc057981526020017f0779b3e2957d05002c09f19466504fdc98d72c9ceef51181d56928cc96f45f09815250815260200160405180604001604052807e7e3e1a4d0648758b7dcdce31ba26f901bd7165591ba2cc8d99c341449a144981526020017f29a8a217dc768975374adbf6c4abd299a2fb61ea9b9ac5e434b762088d0045a68152508152508160200181905250604051806040016040528060405180604001604052807f25a33883c3fc5b5010f7d0754d584b6af6ad8c72ec2b2ffd6106ba7e1168ba8781526020017f13ace61c7c234e9554a31756f55595a858e476bc4d6f3259542d88ebba8ce0e9815250815260200160405180604001604052807f2a4ffe94aa0471698f6461591e84090fe259aba7441c314120f29fa04be9192e81526020017f102ee66b04a5b33b8da5abfb40c3ae8e7e8b97d2107c6e26c267318768bb5cf98152508152508160400181905250604051806040016040528060405180604001604052807f2f75835b8e07eb2842d4e8aaebd76dc5b13d7b398922b482cd34ed75b8ebb60481526020017f15340e83a71ad8ae71922daa31ec57a1c1a9f1a8b87052d9b21071ebe322f690815250815260200160405180604001604052807f28994b46c36938286be00c2d4a037b450807ed33bdfdea3026671e9a29dbc0da81526020017f1fd84493e66317f1990a47f6c160fa3608a4429ae91109c12eaa6998b9cc0e2f8152508152508160600181905250600b67ffffffffffffffff8111156106c3577f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fd5b6040519080825280602002602001820160405280156106fc57816020015b6106e9611a8b565b8152602001906001900390816106e15790505b50816080018190525060405180604001604052807f275b4cd501bad603e15a309a89eefec0f7a67fb634d73fdb210ef307f08d13f781526020017f0c9b189365a2307b2e3f0b6ff6212be6e745cfcf72492ea50c6f601550a49b588152508160800151600081518110610798577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002602001018190525060405180604001604052807f0421ef26cc818810e3c3ad3b891380dff84ef59db34bf3adc7bf7164258db19e81526020017f158f1d5722065e2c70c262ea883f75c08ec25104cba26abba15614fb222b14898152508160800151600181518110610836577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002602001018190525060405180604001604052807f22d2bfc16ea56e82a35e56a024c4eb642bfc3cea18d661d65e171ee0dc7ac20d81526020017e1d5ab194466563bdcecb756f86e901d9171b3b5eac1113c8e06fa533c1030381525081608001516002815181106108d3577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002602001018190525060405180604001604052807f156a36e1bc3a6519d3b9d1c38f54470492f7868f30e97f0b2a56739f47fb377281526020017f200145fabc873ca5cde0d516572e5d847848528b2d29a215b941e4ed23ef81988152508160800151600381518110610971577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002602001018190525060405180604001604052807f2fe1bd9027c5998828dfa35255c0109ce37df1611a8321bd6ec54414f925808481526020017f0e9468bd49a345f1a56c4c95ec43b0760112c26614e04b542a430948b267b6f68152508160800151600481518110610a0f577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002602001018190525060405180604001604052807f22d402185d33453e212ed0dc7bbeb8b12e6bd2fb59c11513c38f72e5c82243e381526020017f1f5c3f23887cdd5b07d9d301185e02cabebc3115abac40b042882f176b80fbbb8152508160800151600581518110610aad577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002602001018190525060405180604001604052807f12b331c7333b0d3bd5f9e355c3e65946a42c21cfca3dc630d45ad45ab731356b81526020017f089aed741586b9665691eadda57ebe9b96c3e411f6c54cc96429145c5f37cd2b8152508160800151600681518110610b4b577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002602001018190525060405180604001604052807f206b4ddcb62a78b8625084002868b87072d067e4cac8444442ec7d4635dd666981526020017f1a5c4733a5b4f5f2969328dda711181031531a6e9804ead44f69749641be1b948152508160800151600781518110610be9577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002602001018190525060405180604001604052807f2ea9675e2f3161c720ced4b9bed669bda997808a14947455df5fea9ea4cbba4381526020017f1c04cc977c02897f731cf71e63e92a7b0e82fd4e39a67cca66e3120607530f5a8152508160800151600881518110610c87577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002602001018190525060405180604001604052807f0a05d7db49313261bc9c961d97ad8ab35e568e3fae8029f42669d8b0ccdac2d081526020017f16a131ee70b6784583b0c8d7e8eed5cb49d7c4afcd5c5ee02f551cad2ebe189d8152508160800151600981518110610d25577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002602001018190525060405180604001604052807f138b6c6ae1a1e0f7d8b8d19830fb72c749921da700201fefdfa398f55af47d9381526020017f14e0115ada5d7c3fb6318567a2cca8516e72067766929f0be53fbd38813e17648152508160800151600a81518110610dc3577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002602001018190525090565b610dd9611a8b565b610de1611aa5565b836000015181600060038110610e20577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002018181525050836020015181600160038110610e68577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b6020020181815250508281600260038110610eac577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002018181525050600060608360808460076107d05a03fa90508060008114610ed557610ed7565bfe5b5080610ee257600080fd5b505092915050565b610ef2611a8b565b610efa611ac7565b836000015181600060048110610f39577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002018181525050836020015181600160048110610f81577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002018181525050826000015181600260048110610fc9577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002018181525050826020015181600360048110611011577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002018181525050600060608360c08460066107d05a03fa9050806000811461103a5761103c565bfe5b508061104757600080fd5b505092915050565b611057611a8b565b60007f30644e72e131a029b85045b68181585d97816a916871ca8d3c208c16d87cfd47905060008360000151148015611094575060008360200151145b156110b85760405180604001604052806000815260200160008152509150506110ef565b6040518060400160405280846000015181526020018285602001516110dd9190611f9d565b836110e89190611f0a565b8152509150505b919050565b600080600467ffffffffffffffff811115611138577f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fd5b60405190808252806020026020018201604052801561117157816020015b61115e611a8b565b8152602001906001900390816111565790505b5090506000600467ffffffffffffffff8111156111b7577f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fd5b6040519080825280602002602001820160405280156111f057816020015b6111dd611ae9565b8152602001906001900390816111d55790505b5090508a8260008151811061122e577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b60200260200101819052508882600181518110611274577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b602002602001018190525086826002815181106112ba577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b60200260200101819052508482600381518110611300577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b60200260200101819052508981600081518110611346577f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b6020026020010181905250878160018151811061138c577f4e487b71000000000000000000000000000000000000000000000000000000006000526032600452'... 6722 more characters,
+      immutableReferences: {},
+      generatedSources: [],
+      deployedGeneratedSources: [Array],
+      sourceMap: '6234:5211:0:-:0;;;;;;;;;;;;;;;;;;;',
+      deployedSourceMap: '6234:5211:0:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;11041:402;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;;11145:6;11163:25;11202:2;11191:14;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;11163:42;;11228:6;11224:88;11244:12;11240:1;:16;11224:88;;;11293:5;11299:1;11293:8;;;;;;;;;;;;;;;;;;;11276:11;11288:1;11276:14;;;;;;;;;;;;;;;;;;;;;:25;;;;;11258:3;;;;;:::i;:::-;;;;11224:88;;;;11355:1;11325:26;11332:11;11345:5;11325:6;:26::i;:::-;:31;11321:116;;;11379:4;11372:11;;;;;11321:116;11421:5;11414:12;;;11041:402;;;;;:::o;10115:921::-;10195:4;10211:26;10240:77;10211:106;;10327:22;10352:14;:12;:14::i;:::-;10327:39;;10404:2;:12;;;:19;10399:1;10384:5;:12;:16;;;;:::i;:::-;:39;10376:48;;;;;;10481:27;10511:21;;;;;;;;10527:1;10511:21;;;;10530:1;10511:21;;;10481:51;;10547:6;10542:197;10563:5;:12;10559:1;:16;10542:197;;;10615:18;10604:5;10610:1;10604:8;;;;;;;;;;;;;;;;;;;;;;:29;10596:38;;;;;;10655:73;10672:4;10678:49;10697:2;:12;;;10714:1;10710;:5;;;;:::i;:::-;10697:19;;;;;;;;;;;;;;;;;;;;;;10718:5;10724:1;10718:8;;;;;;;;;;;;;;;;;;;;;;10678:18;:49::i;:::-;10655:16;:73::i;:::-;10648:80;;10577:3;;;;;:::i;:::-;;;;10542:197;;;;10755:39;10772:4;10778:2;:12;;;10791:1;10778:15;;;;;;;;;;;;;;;;;;;;;;10755:16;:39::i;:::-;10748:46;;10808:193;10843:5;:7;;;10852:5;:7;;;10874:20;10889:4;10874:14;:20::i;:::-;10896:2;:8;;;10919:23;10934:5;:7;;;10919:14;:23::i;:::-;10944:2;:8;;;10967:24;10982:2;:8;;;10967:14;:24::i;:::-;10993:2;:7;;;10808:20;:193::i;:::-;10804:207;;11010:1;11003:8;;;;;;;10804:207;11028:1;11021:8;;;;;10115:921;;;;;:::o;6581:3529::-;6628:22;;:::i;:::-;6673:169;;;;;;;;6697:66;6673:169;;;;6774:66;6673:169;;;6662:2;:8;;:180;;;;6862:327;;;;;;;;;;;;;;;;6887:66;6862:327;;;;6964:66;6862:327;;;;;;;;;;;;;;;7043:66;6862:327;;;;7120:66;6862:327;;;;;;6852:2;:7;;:337;;;;7210:327;;;;;;;;;;;;;;;;7235:66;7210:327;;;;7312:66;7210:327;;;;;;;;;;;;;;;7391:66;7210:327;;;;7468:66;7210:327;;;;;;7199:2;:8;;:338;;;;7558:327;;;;;;;;;;;;;;;;7583:66;7558:327;;;;7660:66;7558:327;;;;;;;;;;;;;;;7739:66;7558:327;;;;7816:66;7558:327;;;;;;7547:2;:8;;:338;;;;7932:2;7910:25;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;7895:2;:12;;:40;;;;7963:169;;;;;;;;7987:66;7963:169;;;;8064:66;7963:169;;;7945:2;:12;;;7958:1;7945:15;;;;;;;;;;;;;;;;;;;;;:187;;;;8160:169;;;;;;;;8184:66;8160:169;;;;8261:66;8160:169;;;8142:2;:12;;;8155:1;8142:15;;;;;;;;;;;;;;;;;;;;;:187;;;;8357:169;;;;;;;;8381:66;8357:169;;;;8458:66;8357:169;;;8339:2;:12;;;8352:1;8339:15;;;;;;;;;;;;;;;;;;;;;:187;;;;8554:169;;;;;;;;8578:66;8554:169;;;;8655:66;8554:169;;;8536:2;:12;;;8549:1;8536:15;;;;;;;;;;;;;;;;;;;;;:187;;;;8751:169;;;;;;;;8775:66;8751:169;;;;8852:66;8751:169;;;8733:2;:12;;;8746:1;8733:15;;;;;;;;;;;;;;;;;;;;;:187;;;;8948:169;;;;;;;;8972:66;8948:169;;;;9049:66;8948:169;;;8930:2;:12;;;8943:1;8930:15;;;;;;;;;;;;;;;;;;;;;:187;;;;9145:169;;;;;;;;9169:66;9145:169;;;;9246:66;9145:169;;;9127:2;:12;;;9140:1;9127:15;;;;;;;;;;;;;;;;;;;;;:187;;;;9342:169;;;;;;;;9366:66;9342:169;;;;9443:66;9342:169;;;9324:2;:12;;;9337:1;9324:15;;;;;;;;;;;;;;;;;;;;;:187;;;;9539:169;;;;;;;;9563:66;9539:169;;;;9640:66;9539:169;;;9521:2;:12;;;9534:1;9521:15;;;;;;;;;;;;;;;;;;;;;:187;;;;9736:169;;;;;;;;9760:66;9736:169;;;;9837:66;9736:169;;;9718:2;:12;;;9731:1;9718:15;;;;;;;;;;;;;;;;;;;;;:187;;;;9934:169;;;;;;;;9958:66;9934:169;;;;10035:66;9934:169;;;9915:2;:12;;;9928:2;9915:16;;;;;;;;;;;;;;;;;;;;;:188;;;;6581:3529;:::o;3082:454::-;3151:16;;:::i;:::-;3179:20;;:::i;:::-;3220:1;:3;;;3209:5;3215:1;3209:8;;;;;;;;;;;;;;;;;;:14;;;;;3244:1;:3;;;3233:5;3239:1;3233:8;;;;;;;;;;;;;;;;;;:14;;;;;3268:1;3257:5;3263:1;3257:8;;;;;;;;;;;;;;;;;;:12;;;;;3279;3383:4;3380:1;3374:4;3367:5;3364:1;3357:4;3350:5;3346:16;3335:53;3324:64;;3465:7;3478:1;3473:20;;;;3458:35;;3473:20;3482:9;3458:35;;3521:7;3512:17;;;;;;3082:454;;;;;;:::o;2432:493::-;2511:16;;:::i;:::-;2539:20;;:::i;:::-;2580:2;:4;;;2569:5;2575:1;2569:8;;;;;;;;;;;;;;;;;;:15;;;;;2605:2;:4;;;2594:5;2600:1;2594:8;;;;;;;;;;;;;;;;;;:15;;;;;2630:2;:4;;;2619:5;2625:1;2619:8;;;;;;;;;;;;;;;;;;:15;;;;;2655:2;:4;;;2644:5;2650:1;2644:8;;;;;;;;;;;;;;;;;;:15;;;;;2669:12;2773:4;2770:1;2764:4;2757:5;2754:1;2747:4;2740:5;2736:16;2725:53;2714:64;;2855:7;2868:1;2863:20;;;;2848:35;;2863:20;2872:9;2848:35;;2910:7;2902:16;;;;;;2432:493;;;;;;:::o;2041:340::-;2098:14;;:::i;:::-;2176:6;2185:77;2176:86;;2283:1;2276;:3;;;:8;:20;;;;;2295:1;2288;:3;;;:8;2276:20;2272:58;;;2317:13;;;;;;;;2325:1;2317:13;;;;2328:1;2317:13;;;2310:20;;;;;2272:58;2347:27;;;;;;;;2355:1;:3;;;2347:27;;;;2371:1;2365;:3;;;:7;;;;:::i;:::-;2360:1;:13;;;;:::i;:::-;2347:27;;;2340:34;;;2041:340;;;;:::o;5678:552::-;5929:4;5945:19;5981:1;5967:16;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;5945:38;;5993:19;6029:1;6015:16;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;5993:38;;6049:2;6041;6044:1;6041:5;;;;;;;;;;;;;;;;;;;;;:10;;;;6069:2;6061;6064:1;6061:5;;;;;;;;;;;;;;;;;;;;;:10;;;;6089:2;6081;6084:1;6081:5;;;;;;;;;;;;;;;;;;;;;:10;;;;6109:2;6101;6104:1;6101:5;;;;;;;;;;;;;;;;;;;;;:10;;;;6129:2;6121;6124:1;6121:5;;;;;;;;;;;;;;;;;;;;;:10;;;;6149:2;6141;6144:1;6141:5;;;;;;;;;;;;;;;;;;;;;:10;;;;6169:2;6161;6164:1;6161:5;;;;;;;;;;;;;;;;;;;;;:10;;;;6189:2;6181;6184:1;6181:5;;;;;;;;;;;;;;;;;;;;;:10;;;;6208:15;6216:2;6220;6208:7;:15::i;:::-;6201:22;;;;5678:552;;;;;;;;;;:::o;3747:923::-;3829:4;3866:2;:9;3853:2;:9;:22;3845:31;;;;;;3886:13;3902:2;:9;3886:25;;3921:14;3949:1;3938:8;:12;;;;:::i;:::-;3921:29;;3960:19;3993:9;3982:21;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3960:43;;4018:6;4013:307;4034:8;4030:1;:12;4013:307;;;4090:2;4093:1;4090:5;;;;;;;;;;;;;;;;;;;;;;:7;;;4071:5;4085:1;4081;4077;:5;;;;:::i;:::-;:9;;;;:::i;:::-;4071:16;;;;;;;;;;;;;;;;;;;;;:26;;;;;4130:2;4133:1;4130:5;;;;;;;;;;;;;;;;;;;;;;:7;;;4111:5;4125:1;4121;4117;:5;;;;:::i;:::-;:9;;;;:::i;:::-;4111:16;;;;;;;;;;;;;;;;;;;;;:26;;;;;4170:2;4173:1;4170:5;;;;;;;;;;;;;;;;;;;;;;:7;;;4178:1;4170:10;;;;;;;;;;;;;;;;;;;4151:5;4165:1;4161;4157;:5;;;;:::i;:::-;:9;;;;:::i;:::-;4151:16;;;;;;;;;;;;;;;;;;;;;:29;;;;;4213:2;4216:1;4213:5;;;;;;;;;;;;;;;;;;;;;;:7;;;4221:1;4213:10;;;;;;;;;;;;;;;;;;;4194:5;4208:1;4204;4200;:5;;;;:::i;:::-;:9;;;;:::i;:::-;4194:16;;;;;;;;;;;;;;;;;;;;;:29;;;;;4256:2;4259:1;4256:5;;;;;;;;;;;;;;;;;;;;;;:7;;;4264:1;4256:10;;;;;;;;;;;;;;;;;;;4237:5;4251:1;4247;4243;:5;;;;:::i;:::-;:9;;;;:::i;:::-;4237:16;;;;;;;;;;;;;;;;;;;;;:29;;;;;4299:2;4302:1;4299:5;;;;;;;;;;;;;;;;;;;;;;:7;;;4307:1;4299:10;;;;;;;;;;;;;;;;;;;4280:5;4294:1;4290;4286;:5;;;;:::i;:::-;:9;;;;:::i;:::-;4280:16;;;;;;;;;;;;;;;;;;;;;:29;;;;;4044:3;;;;;:::i;:::-;;;;4013:307;;;;4329:18;;:::i;:::-;4357:12;4490:4;4485:3;4478:4;4467:9;4463:20;4456:4;4449:5;4445:16;4442:1;4435:4;4428:5;4424:16;4413:82;4402:93;;4572:7;4585:1;4580:20;;;;4565:35;;4580:20;4589:9;4565:35;;4627:7;4619:16;;;;;;4662:1;4652:3;4656:1;4652:6;;;;;;;;;;;;;;;;;;;:11;;4645:18;;;;;;;3747:923;;;;:::o;-1:-1:-1:-;;;;;;;;;;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;:::i;:::-;;;;;;;:::i;:::-;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;26:567:1:-;;146:79;161:63;217:6;161:63;:::i;:::-;146:79;:::i;:::-;137:88;;245:5;271:6;321:3;313:4;305:6;301:17;296:3;292:27;289:36;286:2;;;338:1;335;328:12;286:2;366:1;351:236;376:6;373:1;370:13;351:236;;;443:3;471:37;504:3;492:10;471:37;:::i;:::-;466:3;459:50;538:4;533:3;529:14;522:21;;572:4;567:3;563:14;556:21;;411:176;398:1;395;391:9;386:14;;351:236;;;355:14;127:466;;;;;;;:::o;617:565::-;;736:78;751:62;806:6;751:62;:::i;:::-;736:78;:::i;:::-;727:87;;834:5;860:6;910:3;902:4;894:6;890:17;885:3;881:27;878:36;875:2;;;927:1;924;917:12;875:2;955:1;940:236;965:6;962:1;959:13;940:236;;;1032:3;1060:37;1093:3;1081:10;1060:37;:::i;:::-;1055:3;1048:50;1127:4;1122:3;1118:14;1111:21;;1161:4;1156:3;1152:14;1145:21;;1000:176;987:1;984;980:9;975:14;;940:236;;;944:14;717:465;;;;;;;:::o;1207:274::-;;1326:3;1319:4;1311:6;1307:17;1303:27;1293:2;;1344:1;1341;1334:12;1293:2;1371:4;1393:82;1471:3;1463:6;1455;1393:82;:::i;:::-;1384:91;;1283:198;;;;;:::o;1505:272::-;;1623:3;1616:4;1608:6;1604:17;1600:27;1590:2;;1641:1;1638;1631:12;1590:2;1668:4;1690:81;1767:3;1759:6;1751;1690:81;:::i;:::-;1681:90;;1580:197;;;;;:::o;1813:497::-;;1928:4;1916:9;1911:3;1907:19;1903:30;1900:2;;;1946:1;1943;1936:12;1900:2;1968:20;1983:4;1968:20;:::i;:::-;1959:29;;2044:1;2084:49;2129:3;2120:6;2109:9;2105:22;2084:49;:::i;:::-;2077:4;2070:5;2066:16;2059:75;1998:147;2201:2;2242:49;2287:3;2278:6;2267:9;2263:22;2242:49;:::i;:::-;2235:4;2228:5;2224:16;2217:75;2155:148;1890:420;;;;:::o;2346:544::-;;2462:4;2450:9;2445:3;2441:19;2437:30;2434:2;;;2480:1;2477;2470:12;2434:2;2502:20;2517:4;2502:20;:::i;:::-;2493:29;;2578:1;2618:72;2686:3;2677:6;2666:9;2662:22;2618:72;:::i;:::-;2611:4;2604:5;2600:16;2593:98;2532:170;2758:2;2799:72;2867:3;2858:6;2847:9;2843:22;2799:72;:::i;:::-;2792:4;2785:5;2781:16;2774:98;2712:171;2424:466;;;;:::o;2925:725::-;;3040:6;3028:9;3023:3;3019:19;3015:32;3012:2;;;3060:1;3057;3050:12;3012:2;3082:20;3097:4;3082:20;:::i;:::-;3073:29;;3158:1;3198:71;3265:3;3256:6;3245:9;3241:22;3198:71;:::i;:::-;3191:4;3184:5;3180:16;3173:97;3112:169;3337:2;3378:72;3446:3;3437:6;3426:9;3422:22;3378:72;:::i;:::-;3371:4;3364:5;3360:16;3353:98;3291:171;3518:3;3560:71;3627:3;3618:6;3607:9;3603:22;3560:71;:::i;:::-;3553:4;3546:5;3542:16;3535:97;3472:171;3002:648;;;;:::o;3656:139::-;;3740:6;3727:20;3718:29;;3756:33;3783:5;3756:33;:::i;:::-;3708:87;;;;:::o;3801:501::-;;;3972:3;3960:9;3951:7;3947:23;3943:33;3940:2;;;3989:1;3986;3979:12;3940:2;4032:1;4057:75;4124:7;4115:6;4104:9;4100:22;4057:75;:::i;:::-;4047:85;;4003:139;4181:3;4208:77;4277:7;4268:6;4257:9;4253:22;4208:77;:::i;:::-;4198:87;;4152:143;3930:372;;;;;:::o;4308:109::-;4389:21;4404:5;4389:21;:::i;:::-;4384:3;4377:34;4367:50;;:::o;4423:210::-;;4548:2;4537:9;4533:18;4525:26;;4561:65;4623:1;4612:9;4608:17;4599:6;4561:65;:::i;:::-;4515:118;;;;:::o;4639:283::-;;4705:2;4699:9;4689:19;;4747:4;4739:6;4735'... 1807 more characters,
+      source: '// This file is MIT Licensed.\n' +
+        '//\n' +
+        '// Copyright 2017 Christian Reitwiessner\n' +
+        '// Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n' +
+        '// The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n' +
+        '// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n' +
+        'pragma solidity ^0.8.0;\n' +
+        'library Pairing {\n' +
+        '    struct G1Point {\n' +
+        '        uint X;\n' +
+        '        uint Y;\n' +
+        '    }\n' +
+        '    // Encoding of field elements is: X[0] * z + X[1]\n' +
+        '    struct G2Point {\n' +
+        '        uint[2] X;\n' +
+        '        uint[2] Y;\n' +
+        '    }\n' +
+        '    /// @return the generator of G1\n' +
+        '    function P1() pure internal returns (G1Point memory) {\n' +
+        '        return G1Point(1, 2);\n' +
+        '    }\n' +
+        '    /// @return the generator of G2\n' +
+        '    function P2() pure internal returns (G2Point memory) {\n' +
+        '        return G2Point(\n' +
+        '            [10857046999023057135944570762232829481370756359578518086990519993285655852781,\n' +
+        '             11559732032986387107991004021392285783925812861821192530917403151452391805634],\n' +
+        '            [8495653923123431417604973247489272438418190587263600148770280649306958101930,\n' +
+        '             4082367875863433681332203403145435568316851327593401208105741076214120093531]\n' +
+        '        );\n' +
+        '    }\n' +
+        '    /// @return the negation of p, i.e. p.addition(p.negate()) should be zero.\n' +
+        '    function negate(G1Point memory p) pure internal returns (G1Point memory) {\n' +
+        '        // The prime q in the base field F_q for G1\n' +
+        '        uint q = 21888242871839275222246405745257275088696311157297823662689037894645226208583;\n' +
+        '        if (p.X == 0 && p.Y == 0)\n' +
+        '            return G1Point(0, 0);\n' +
+        '        return G1Point(p.X, q - (p.Y % q));\n' +
+        '    }\n' +
+        '    /// @return r the sum of two points of G1\n' +
+        '    function addition(G1Point memory p1, G1Point memory p2) internal view returns (G1Point memory r) {\n' +
+        '        uint[4] memory input;\n' +
+        '        input[0] = p1.X;\n' +
+        '        input[1] = p1.Y;\n' +
+        '        input[2] = p2.X;\n' +
+        '        input[3] = p2.Y;\n' +
+        '        bool success;\n' +
+        '        assembly {\n' +
+        '            success := staticcall(sub(gas(), 2000), 6, input, 0xc0, r, 0x60)\n' +
+        '            // Use "invalid" to make gas estimation work\n' +
+        '            switch success case 0 { invalid() }\n' +
+        '        }\n' +
+        '        require(success);\n' +
+        '    }\n' +
+        '\n' +
+        '\n' +
+        '    /// @return r the product of a point on G1 and a scalar, i.e.\n' +
+        '    /// p == p.scalar_mul(1) and p.addition(p) == p.scalar_mul(2) for all points p.\n' +
+        '    function scalar_mul(G1Point memory p, uint s) internal view returns (G1Point memory r) {\n' +
+        '        uint[3] memory input;\n' +
+        '        input[0] = p.X;\n' +
+        '        input[1] = p.Y;\n' +
+        '        input[2] = s;\n' +
+        '        bool success;\n' +
+        '        assembly {\n' +
+        '            success := staticcall(sub(gas(), 2000), 7, input, 0x80, r, 0x60)\n' +
+        '            // Use "invalid" to make gas estimation work\n' +
+        '            switch success case 0 { invalid() }\n' +
+        '        }\n' +
+        '        require (success);\n' +
+        '    }\n' +
+        '    /// @return the result of computing the pairing check\n' +
+        '    /// e(p1[0], p2[0]) *  .... * e(p1[n], p2[n]) == 1\n' +
+        '    /// For example pairing([P1(), P1().negate()], [P2(), P2()]) should\n' +
+        '    /// return true.\n' +
+        '    function pairing(G1Point[] memory p1, G2Point[] memory p2) internal view returns (bool) {\n' +
+        '        require(p1.length == p2.length);\n' +
+        '        uint elements = p1.length;\n' +
+        '        uint inputSize = elements * 6;\n' +
+        '        uint[] memory input = new uint[](inputSize);\n' +
+        '        for (uint i = 0; i < elements; i++)\n' +
+        '        {\n' +
+        '            input[i * 6 + 0] = p1[i].X;\n' +
+        '            input[i * 6 + 1] = p1[i].Y;\n' +
+        '            input[i * 6 + 2] = p2[i].X[1];\n' +
+        '            input[i * 6 + 3] = p2[i].X[0];\n' +
+        '            input[i * 6 + 4] = p2[i].Y[1];\n' +
+        '            input[i * 6 + 5] = p2[i].Y[0];\n' +
+        '        }\n' +
+        '        uint[1] memory out;\n' +
+        '        bool success;\n' +
+        '        assembly {\n' +
+        '            success := staticcall(sub(gas(), 2000), 8, add(input, 0x20), mul(inputSize, 0x20), out, 0x20)\n' +
+        '            // Use "invalid" to make gas estimation work\n' +
+        '            switch success case 0 { invalid() }\n' +
+        '        }\n' +
+        '        require(success);\n' +
+        '        return out[0] != 0;\n' +
+        '    }\n' +
+        '    /// Convenience method for a pairing check for two pairs.\n' +
+        '    function pairingProd2(G1Point memory a1, G2Point memory a2, G1Point memory b1, G2Point memory b2) internal view returns (bool) {\n' +
+        '        G1Point[] memory p1 = new G1Point[](2);\n' +
+        '        G2Point[] memory p2 = new G2Point[](2);\n' +
+        '        p1[0] = a1;\n' +
+        '        p1[1] = b1;\n' +
+        '        p2[0] = a2;\n' +
+        '        p2[1] = b2;\n' +
+        '        return pairing(p1, p2);\n' +
+        '    }\n' +
+        '    /// Convenience method for a pairing check for three pairs.\n' +
+        '    function pairingProd3(\n' +
+        '            G1Point memory a1, G2Point memory a2,\n' +
+        '            G1Point memory b1, G2Point memory b2,\n' +
+        '            G1Point memory c1, G2Point memory c2\n' +
+        '    ) internal view returns (bool) {\n' +
+        '        G1Point[] memory p1 = new G1Point[](3);\n' +
+        '        G2Point[] memory p2 = new G2Point[](3);\n' +
+        '        p1[0] = a1;\n' +
+        '        p1[1] = b1;\n' +
+        '        p1[2] = c1;\n' +
+        '        p2[0] = a2;\n' +
+        '        p2[1] = b2;\n' +
+        '        p2[2] = c2;\n' +
+        '        return pairing(p1, p2);\n' +
+        '    }\n' +
+        '    /// Convenience method for a pairing check for four pairs.\n' +
+        '    function pairingProd4(\n' +
+        '            G1Point memory a1, G2Point memory a2,\n' +
+        '            G1Point memory b1, G2Point memory b2,\n' +
+        '            G1Point memory c1, G2Point memory c2,\n' +
+        '            G1Point memory d1, G2Point memory d2\n' +
+        '    ) internal view returns (bool) {\n' +
+        '        G1Point[] memory p1 = new G1Point[](4);\n' +
+        '        G2Point[] memory p2 = new G2Point[](4);\n' +
+        '        p1[0] = a1;\n' +
+        '        p1[1] = b1;\n' +
+        '        p1[2] = c1;\n' +
+        '        p1[3] = d1;\n' +
+        '        p2[0] = a2;\n' +
+        '        p2[1] = b2;\n' +
+        '        p2[2] = c2;\n' +
+        '        p2[3] = d2;\n' +
+        '        return pairing(p1, p2);\n' +
+        '    }\n' +
+        '}\n' +
+        '\n' +
+        'contract Verifier {\n' +
+        '    using Pairing for *;\n' +
+        '    struct VerifyingKey {\n' +
+        '        Pairing.G1Point alpha;\n' +
+        '        Pairing.G2Point beta;\n' +
+        '        Pairing.G2Point gamma;\n' +
+        '        Pairing.G2Point delta;\n' +
+        '        Pairing.G1Point[] gamma_abc;\n' +
+        '    }\n' +
+        '    struct Proof {\n' +
+        '        Pairing.G1Point a;\n' +
+        '        Pairing.G2Point b;\n' +
+        '        Pairing.G1Point c;\n' +
+        '    }\n' +
+        '    function verifyingKey() pure internal returns (VerifyingKey memory vk) {\n' +
+        '        vk.alpha = Pairing.G1Point(uint256(0x1c26c77fd1516b0b64372424a4f00dc879477dc6659ec87ee1710d59a38dd39d), uint256(0x1b4f7f51ddaac79ed0efdc0bcf7b78f32fb47f8acbe3f0205f8f985d4f7f4846));\n' +
+        '        vk.beta = Pairing.G2Point([uint256(0x257b2d2ea8fde67eec9e743b15b02aa2dd3d69ae7ff593db2cbaae75cccc0579), uint256(0x0779b3e2957d05002c09f19466504fdc98d72c9ceef51181d56928cc96f45f09)], [uint256(0x007e3e1a4d0648758b7dcdce31ba26f901bd7165591ba2cc8d99c341449a1449), uint256(0x29a8a217dc768975374adbf6c4abd299a2fb61ea9b9ac5e434b762088d0045a6)]);\n' +
+        '        vk.gamma = Pairing.G2Point([uint256(0x25a33883c3fc5b5010f7d0754d584b6af6ad8c72ec2b2ffd6106ba7e1168ba87), uint256(0x13ace61c7c234e9554a31756f55595a858e476bc4d6f3259542d88ebba8ce0e9)], [uint256(0x2a4ffe94aa0471698f6461591e84090fe259aba7441c314120f29fa04be9192e), uint256(0x102ee66b04a5b33b8da5abfb40c3ae8e7e8b97d2107c6e26c267318768bb5cf9)]);\n' +
+        '        vk.delta = Pairing.G2Point([uint256(0x2f75835b8e07eb2842d4e8aaebd76dc5b13d7b398922b482cd34ed75b8ebb604), uint256(0x15340e83a71ad8ae71922daa31ec57a1c1a9f1a8b87052d9b21071ebe322f690)], [uint256(0x28994b46c36938286be00c2d4a037b450807ed33bdfdea3026671e9a29dbc0da), uint256(0x1fd84493e66317f1990a47f6c160fa3608a4429ae91109c12eaa6998b9cc0e2f)]);\n' +
+        '        vk.gamma_abc = new Pairing.G1Point[](11);\n' +
+        '        vk.gamma_abc[0] = Pairing.G1Point(uint256(0x275b4cd501bad603e15a309a89eefec0f7a67fb634d73fdb210ef307f08d13f7), uint256(0x0c9b189365a2307b2e3f0b6ff6212be6e745cfcf72492ea50c6f601550a49b58));\n' +
+        '        vk.gamma_abc[1] = Pairing.G1Point(uint256(0x0421ef26cc818810e3c3ad3b891380dff84ef59db34bf3adc7bf7164258db19e), uint256(0x158f1d5722065e2c70c262ea883f75c08ec25104cba26abba15614fb222b1489));\n' +
+        '        vk.gamma_abc[2] = Pairing.G1Point(uint256(0x22d2bfc16ea56e82a35e56a024c4eb642bfc3cea18d661d65e171ee0dc7ac20d), uint256(0x001d5ab194466563bdcecb756f86e901d9171b3b5eac1113c8e06fa533c10303));\n' +
+        '        vk.gamma_abc[3] = Pairing.G1Point(uint256(0x156a36e1bc3a6519d3b9d1c38f54470492f7868f30e97f0b2a56739f47fb3772), uint256(0x200145fabc873ca5cde0d516572e5d847848528b2d29a215b941e4ed23ef8198));\n' +
+        '        vk.gamma_abc[4] = Pairing.G1Point(uint256(0x2fe1bd9027c5998828dfa35255c0109ce37df1611a8321bd6ec54414f9258084), uint256(0x0e9468bd49a345f1a56c4c95ec43b0760112c26614e04b542a430948b267b6f6));\n' +
+        '        vk.gamma_abc[5] = Pairing.G1Point(uint256(0x22d402185d33453e212ed0dc7bbeb8b12e6bd2fb59c11513c38f72e5c82243e3), uint256(0x1f5c3f23887cdd5b07d9d301185e02cabebc3115abac40b042882f176b80fbbb));\n' +
+        '        vk.gamma_abc[6] = Pairing.G1Point(uint256(0x12b331c7333b0d3bd5f9e355c3e65946a42c21cfca3dc630d45ad45ab731356b), uint256(0x089aed741586b9665691eadda57ebe9b96c3e411f6c54cc96429145c5f37cd2b));\n' +
+        '        vk.gamma_abc[7] = Pairing.G1Point(uint256(0x206b4ddcb62a78b8625084002868b87072d067e4cac8444442ec7d4635dd6669), uint256(0x1a5c4733a5b4f5f2969328dda711181031531a6e9804ead44f69749641be1b94));\n' +
+        '        vk.gamma_abc[8] = Pairing.G1Point(uint256(0x2ea9675e2f3161c720ced4b9bed669bda997808a14947455df5fea9ea4cbba43), uint256(0x1c04cc977c02897f731cf71e63e92a7b0e82fd4e39a67cca66e3120607530f5a));\n' +
+        '        vk.gamma_abc[9] = Pairing.G1Point(uint256(0x0a05d7db49313261bc9c961d97ad8ab35e568e3fae8029f42669d8b0ccdac2d0), uint256(0x16a131ee70b6784583b0c8d7e8eed5cb49d7c4afcd5c5ee02f551cad2ebe189d));\n' +
+        '        vk.gamma_abc[10] = Pairing.G1Point(uint256(0x138b6c6ae1a1e0f7d8b8d19830fb72c749921da7'... 1446 more characters,
+      sourcePath: '/Users/Arshini/contracts/verifier.sol',
+      ast: [Object],
+      legacyAST: undefined,
+      compiler: [Object],
+      networks: {},
+      schemaVersion: '3.4.14',
+      updatedAt: '2023-05-24T10:25:36.919Z',
+      networkType: 'ethereum',
+      devdoc: [Object],
+      userdoc: [Object],
+      db: undefined,
+      autoGas: true,
+      gasMultiplier: 1.25
+    },
+    configureNetwork: [Function: bound configureNetwork],
+    setProvider: [Function: bound setProvider],
+    new: [Function: bound new] {
+      estimateGas: [Function: bound estimateDeployment],
+      request: [Function: bound requestDeployment]
+    },
+    at: [Function: bound at] AsyncFunction,
+    deployed: [Function: bound deployed] AsyncFunction,
+    defaults: [Function: bound defaults],
+    hasNetwork: [Function: bound hasNetwork],
+    isDeployed: [Function: bound isDeployed],
+    detectNetwork: [Function: bound detectNetwork] AsyncFunction,
+    setNetwork: [Function: bound setNetwork],
+    setNetworkType: [Function: bound setNetworkType],
+    setWallet: [Function: bound setWallet],
+    resetAddress: [Function: bound resetAddress],
+    link: [Function: bound link],
+    clone: [Function: bound clone],
+    addProp: [Function: bound addProp],
+    toJSON: [Function: bound toJSON],
+    decodeLogs: [Function: bound decodeLogs],
+    enums: {},
+    class_defaults: { from: '0x15c9C8c9bF605B927C63B0C652BD14506E529123' },
+    interfaceAdapter: Web3InterfaceAdapter { web3: [Web3Shim] },
+    web3: Web3Shim {
+      currentProvider: [Getter/Setter],
+      _requestManager: [RequestManager],
+      givenProvider: null,
+      providers: [Object],
+      _provider: [HttpProvider],
+      setProvider: [Function (anonymous)],
+      setRequestManager: [Function (anonymous)],
+      BatchRequest: [Function: bound Batch],
+      extend: [Function],
+      version: '1.10.0',
+      utils: [Object],
+      eth: [Eth],
+      shh: [Shh],
+      bzz: [Bzz],
+      networkType: 'ethereum'
+    },
+    currentProvider: HttpProvider {
+      withCredentials: undefined,
+      timeout: 0,
+      headers: undefined,
+      agent: undefined,
+      connected: false,
+      host: 'http://127.0.0.1:7545',
+      httpAgent: [Agent],
+      send: [Function (anonymous)],
+      request: [Function: bound modifiedRequest] AsyncFunction,
+      _alreadyWrapped: true
+    },
+    network_id: '5777',
+    disableConfirmationListener: undefined,
+    ens: { enabled: false, registryAddress: undefined }
+  },
+  methods: {
+    'verifyTx(((uint256,uint256),(uint256[2],uint256[2]),(uint256,uint256)),uint256[10])': [Function (anonymous)] {
+      call: [Function (anonymous)],
+      sendTransaction: [Function (anonymous)],
+      estimateGas: [Function (anonymous)],
+      request: [Function (anonymous)]
+    }
+  },
+  abi: [
+    {
+      inputs: [Array],
+      name: 'verifyTx',
+      outputs: [Array],
+      stateMutability: 'view',
+      type: 'function',
+      constant: true,
+      payable: undefined,
+      signature: '0x11bfe45a'
+    }
+  ],
+  address: '0x66eb3237Fa8d7a0224354Db5a7395Aa9F22e36cb',
+  transactionHash: '0x255539d70c7e02a2c654e457c621743b8103824c4bd7446969e784f1fee55b84',
+  contract: Contract {
+    setProvider: [Function (anonymous)],
+    currentProvider: [Getter/Setter],
+    _requestManager: RequestManager {
+      provider: [HttpProvider],
+      providers: [Object],
+      subscriptions: Map(0) {}
+    },
+    givenProvider: null,
+    providers: {
+      WebsocketProvider: [Function: WebsocketProvider],
+      HttpProvider: [Function: HttpProvider],
+      IpcProvider: [Function: IpcProvider]
+    },
+    _provider: HttpProvider {
+      withCredentials: undefined,
+      timeout: 0,
+      headers: undefined,
+      agent: undefined,
+      connected: false,
+      host: 'http://127.0.0.1:7545',
+      httpAgent: [Agent],
+      send: [Function (anonymous)],
+      request: [Function: bound modifiedRequest] AsyncFunction,
+      _alreadyWrapped: true
+    },
+    setRequestManager: [Function (anonymous)],
+    BatchRequest: [Function: bound Batch],
+    extend: [Function: ex] {
+      formatters: [Object],
+      utils: [Object],
+      Method: [Function: Method]
+    },
+    clearSubscriptions: [Function (anonymous)],
+    options: { address: [Getter/Setter], jsonInterface: [Getter/Setter] },
+    handleRevert: [Getter/Setter],
+    defaultCommon: [Getter/Setter],
+    defaultHardfork: [Getter/Setter],
+    defaultChain: [Getter/Setter],
+    transactionPollingTimeout: [Getter/Setter],
+    transactionPollingInterval: [Getter/Setter],
+    transactionConfirmationBlocks: [Getter/Setter],
+    transactionBlockTimeout: [Getter/Setter],
+    blockHeaderTimeout: [Getter/Setter],
+    defaultAccount: [Getter/Setter],
+    defaultBlock: [Getter/Setter],
+    methods: {
+      verifyTx: [Function: bound _createTxObject],
+      '0x11bfe45a': [Function: bound _createTxObject],
+      'verifyTx(((uint256,uint256),(uint256[2],uint256[2]),(uint256,uint256)),uint256[10])': [Function: bound _createTxObject]
+    },
+    events: { allEvents: [Function: bound ] },
+    _address: '0x66eb3237Fa8d7a0224354Db5a7395Aa9F22e36cb',
+    _jsonInterface: [ [Object] ],
+    transactionHash: '0x255539d70c7e02a2c654e457c621743b8103824c4bd7446969e784f1fee55b84'
+  },
+  verifyTx: [Function (anonymous)] {
+    call: [Function (anonymous)],
+    sendTransaction: [Function (anonymous)],
+    estimateGas: [Function (anonymous)],
+    request: [Function (anonymous)]
+  },
+  sendTransaction: [Function (anonymous)],
+  estimateGas: [Function (anonymous)],
+  call: [Function (anonymous)],
+  send: [Function (anonymous)],
+  allEvents: [Function (anonymous)],
+  getPastEvents: [Function (anonymous)]
+}
+truffle(development)> proof = JSON.parse(fs.readFileSync("path/to/your/proof.json"))
+Uncaught Error: ENOENT: no such file or directory, open 'path/to/your/proof.json'
+    at Object.readFileSync (node:fs:460:35)
+    at Object.openSync (node:fs:592:3) {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: 'path/to/your/proof.json'
+}
+truffle(development)> proof = JSON.parse(fs.readFileSync("bob/proof.json"))
+{
+  scheme: 'g16',
+  curve: 'bn128',
+  proof: {
+    a: [
+      '0x0656f8666514dcde50c9fa223814063c5e0960996da52b577ba8972b688375ba',
+      '0x20fe318a8fa7b3d70234490980f308fd71a54f24fab64945b336ec7a53dd9263'
+    ],
+    b: [ [Array], [Array] ],
+    c: [
+      '0x206149731fda7a08e2c1a8868e7eacd58bdf985994fed1949d77f4b6ff6eca9c',
+      '0x29b00ccf84fae3a67d081b5cbab084e5ed9d6ae88a6211bac28c1d2017854b8f'
+    ]
+  },
+  inputs: [
+    '0x00000000000000000000000000000000000000000000000000000000000001fe',
+    '0x00000000000000000000000000000000000000000000000000000000d623b7e1',
+    '0x0000000000000000000000000000000000000000000000000000000081041ec8',
+    '0x0000000000000000000000000000000000000000000000000000000048eaae2c',
+    '0x00000000000000000000000000000000000000000000000000000000b544fae3',
+    '0x00000000000000000000000000000000000000000000000000000000779c2b8b',
+    '0x00000000000000000000000000000000000000000000000000000000b09c7c90',
+    '0x00000000000000000000000000000000000000000000000000000000e5962c49',
+    '0x00000000000000000000000000000000000000000000000000000000cdde609d',
+    '0x0000000000000000000000000000000000000000000000000000000000000001'
+  ]
+}
+truffle(development)> await contract.verifyTx(proof.proof.a, proof.proof.b, proof.proof.c, proof.inputs)
+Uncaught Error: Invalid number of parameters for "verifyTx". Got 3 expected 2!
+    at evalmachine.<anonymous>:1:26
+    at evalmachine.<anonymous>:2:48
+    at sigintHandlersWrap (node:vm:261:12)
+    at Script.runInContext (node:vm:132:14)
+    at runScript (/Users/Arshini/.nvm/versions/node/v20.2.0/lib/node_modules/truffle/build/webpack:/packages/core/lib/console.js:505:1)
+    at Console.interpret (/Users/Arshini/.nvm/versions/node/v20.2.0/lib/node_modules/truffle/build/webpack:/packages/core/lib/console.js:520:1)
+    at bound (node:domain:433:15)
+    at REPLServer.runBound [as eval] (node:domain:444:12)
+    at REPLServer.onLine (node:repl:900:10)
+    at REPLServer.emit (node:events:511:28)
+    at REPLServer.emit (node:domain:489:12)
+    at REPLServer.[_onLine] [as _onLine] (node:internal/readline/interface:415:12)
+    at REPLServer.[_line] [as _line] (node:internal/readline/interface:886:18)
+    at REPLServer.[_ttyWrite] [as _ttyWrite] (node:internal/readline/interface:1264:22)
+    at REPLServer.self._ttyWrite (node:repl:995:9)
+    at ReadStream.onkeypress (node:internal/readline/interface:263:20)
+    at ReadStream.emit (node:events:511:28)
+    at ReadStream.emit (node:domain:489:12)
+    at emitKeys (node:internal/readline/utils:357:14)
+    at emitKeys.next (<anonymous>) {
+  hijackedStack: 'Error: Invalid number of parameters for "verifyTx". Got 3 expected 2!\n' +
+    '    at Object.InvalidNumberOfParams (/Users/Arshini/.nvm/versions/node/v20.2.0/lib/node_modules/truffle/build/webpack:/node_modules/web3-core-helpers/lib/errors.js:33:1)\n' +
+    '    at Object._createTxObject (/Users/Arshini/.nvm/versions/node/v20.2.0/lib/node_modules/truffle/build/webpack:/node_modules/web3-eth-contract/lib/index.js:712:1)\n' +
+    '    at /Users/Arshini/.nvm/versions/node/v20.2.0/lib/node_modules/truffle/build/webpack:/packages/contract/lib/execute.js:175:1\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:95:5)'
+}
+truffle(development)> await contract.verifyTx([proof.proof.a, proof.proof.b, proof.proof.c], proof.inputs)
+true
+truffle(development)> cheat = [...proof.inputs]
+truffle(development)> cheat[cheat.length-1] = cheat[cheat.length-1].replace(/[01]$/, cheat[cheat.length-1][65] == '1' ? '0': '1')
+[
+  '0x00000000000000000000000000000000000000000000000000000000000001fe',
+  '0x00000000000000000000000000000000000000000000000000000000d623b7e1',
+  '0x0000000000000000000000000000000000000000000000000000000081041ec8',
+  '0x0000000000000000000000000000000000000000000000000000000048eaae2c',
+  '0x00000000000000000000000000000000000000000000000000000000b544fae3',
+  '0x00000000000000000000000000000000000000000000000000000000779c2b8b',
+  '0x00000000000000000000000000000000000000000000000000000000b09c7c90',
+  '0x00000000000000000000000000000000000000000000000000000000e5962c49',
+  '0x00000000000000000000000000000000000000000000000000000000cdde609d',
+  '0x0000000000000000000000000000000000000000000000000000000000000000'
+]
+truffle(development)> '0x0000000000000000000000000000000000000000000000000000000000000000'
+truffle(development)> await contract.verifyTx([proof.proof.a, proof.proof.b, proof.proof.c], cheat)
+false
+truffle(development)> 
